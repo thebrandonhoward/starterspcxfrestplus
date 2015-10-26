@@ -102,10 +102,9 @@ import com.walmart.retailtech.move.innovationte.startersprestplus.interactors.im
 	    	
 	    	// Validate user credentials
 	    	HttpClient httpClient = HttpClientBuilder.create().build();
-			
-	    	HttpGet get = new HttpGet( "http://ldap-api.dev.test-w4spenc.isd-enterpriseinfomgmt.qa.walmart.com/ldap-ui/service/query/"
-			                         + user 
-			                         + "/dc=homeoffice,dc=wal-mart,dc=com" );
+		
+		// add the auth URL here
+	    	HttpGet get = new HttpGet( "" );
 			
 	    	HttpResponse response = null;
 			try 
