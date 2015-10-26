@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+ 
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- if deploying to any CTF clouds you must change the host name from prod to dev -->
+    <appender name="flume" class="com.walmart.platform.logging.log4j.appender.FlumeLog4jAppender">
+        <!--param name="ApplicationId" value="com.walmart.AppArea.ApplicationName.${com.walmart.platform.config.runOnEnv}"/-->
+        <param name="ApplicationId" value="com.walmart.retailtech.move.innovationte.starterspcxfrestplus.prod"/>
+        <param name="Hostname" value="avro.logging.prod.walmart.com"/>
+        <param name="Port" value="5672"/>
+        <param name="UnsafeMode" value="true"/>
+        <param name="batchSize" value="100"/>
+    </appender>
+    
+    <!-- the flume appender can be wrapped in an ASYNC appender to improve performance but if
+        the queued log statements exceeds the buffer lost messages may result if blocking is set false -->
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+        <param name="Blocking" value="false" />
+        <param name="BufferSize" value="500" /><!-- number of log statements -->
+        <appender-ref ref="flume" />
+    </appender>
+
+    <!-- Root Logger -->
+    <root>
+        <level value="debug" />
+        <appender-ref ref="ASYNC" />
+    </root>
+    
+  </log4j:configuration>

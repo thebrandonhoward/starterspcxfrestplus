@@ -1,2 +1,4 @@
-# starterspcxfrestplus
-starter spring cxf rest archetype
+starterspcxfrestplus
+====================
+
+spring - cxf - rest - additional features - archetype
